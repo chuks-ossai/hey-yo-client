@@ -1,0 +1,18 @@
+<ng-template #template let-data="">
+  <div class="settings" *ngIf="data.chat!='receiver' then senderTemplate else receiverTemplate "></div>
+  <ng-template #senderTemplate>
+    <div class="alert alert-info w-50 ml-auto" role="alert">
+      <p>{{data.text}}</p>
+      <div clas="d-flex justify-content-end pr-2"><span class="text-muted">8:00PM</span>&nbsp;<i class="fas fa-check"></i></div>
+      <div id="image" *ngIf="data.avatar!=''"><span class="e-avatar img1 e-avatar-circle">{{data.avatar}}</span></div>
+      <div id="image" *ngIf="data.avatar==''"><span class="{{data.pic}} img1 e-avatar e-avatar-circle"> </span></div>
+    </div>
+  </ng-template>
+
+  <ng-template #receiverTemplate>
+    <div class="alert alert-secondary w-50" role="alert">
+      <p>{{data.text}}</p>
+      <div clas="d-flex justify-content-end"><span class="text-muted">8:00PM</span></div>
+    </div>
+  </ng-template>
+</ng-template>

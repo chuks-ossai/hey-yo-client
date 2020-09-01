@@ -330,8 +330,50 @@
         </div>
 
         <!-- Content Row -->
-        <div class="row">
-          Chat Content goes here!!!
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="overflow-auto mb-3 message-area p-2">
+              <div *ngFor="let message of messageList">
+                <div class="alert alert-info w-50 ml-auto" role="alert">
+                  <p>{{message}}</p>
+                  <div class="d-flex justify-content-end">
+                    <span class="text-muted pr-3">8:00PM</span>&nbsp;<i class="fas fa-check text-success"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- <heyyo-chat-list #list [dataSource]='data'></heyyo-chat-list> -->
+
+                <!-- <ul>
+                  <li style="width:100%">
+                    <div class="msj macro">
+                      <div class="text text-l">
+                        <p> Hello world </p>
+                        <p><small>7:30PM</small></p>
+                      </div>
+                    </div>
+                  </li>
+                  <li style="width:100%">
+                    <div class="msj-rta macro">
+                      <div class="text text-r">
+                        <p> Hello world </p>
+                        <p><small>7:30PM</small></p>
+                      </div>
+                    </div>
+                  </li>
+                </ul> -->
+            </div>
+            <form class="user d-flex align-items-center">
+              <div class="form-group w-100 mb-0">
+                <input type="text" class="form-control form-control-user" [(ngModel)]="newMessage" name="message"  (keyup)="$event.keyCode == 13 && sendMessage()" placeholder="Enter Chat Message...">
+              </div>
+              <button class="btn btn-secondary btn-user btn-sm">
+                <i class="fas fa-paperclip"></i>
+              </button>
+              <button class="btn btn-primary btn-user btn-sm" (click)="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <!-- /.container-fluid -->

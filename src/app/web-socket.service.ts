@@ -22,7 +22,7 @@ export class WebSocketService {
     });
   }
 
-  emit($event: string, data: any): void {
+  sendMessage($event: string, data: any): void {
     this.socket.emit($event, data);
   }
 }
