@@ -14,7 +14,7 @@ export class WebSocketService {
     this.socket = io(this.uri);
    }
 
-  listen$($event: string): Observable<string> {
+  listen$($event: string): Observable<any> {
     return new Observable(subscriber => {
       this.socket.on($event, data => {
         subscriber.next(data);
@@ -22,7 +22,11 @@ export class WebSocketService {
     });
   }
 
-  sendMessage($event: string, data: any): void {
+  sendMessage($event: string, data?: any): void {
     this.socket.emit($event, data);
+  }
+
+  offSocket(): void {
+    this.socket.off();
   }
 }

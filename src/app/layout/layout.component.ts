@@ -1,82 +1,93 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { WebSocketService } from '../web-socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'heyyo-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy {
   public newMessage: string;
-  public myMessage: string;
-  public otherMessage: string;
-  public data: any[] = [
-    {
-      text: 'Jenifer',
-      contact: 'Hi',
-      id: '1',
-      avatar: '',
-      pic: 'pic01', chat: 'sender'
-    },
-    { text: 'Amenda', contact: 'Hello', id: '2', avatar: 'A', pic: '', chat: 'receiver' },
-    {
-      text: 'Jenifer',
-      contact: 'What Knid of application going to launch',
-      id: '4',
-      avatar: '',
-      pic: 'pic02', chat: 'sender'
-    },
-    {
-      text: 'Amenda ',
-      contact: 'A knid of Emergency broadcast App',
-      id: '5',
-      avatar: 'A',
-      pic: '', chat: 'receiver'
-    },
-    {
-      text: 'Jacob',
-      contact: 'Can you please elaborate',
-      id: '6',
-      avatar: '',
-      pic: 'pic04', chat: 'sender'
-    },
-  ];
+  public loginInfo: any;
+  public userId: string;
   public messageList: any[] = [];
-  @ViewChild('messages') messages: ElementRef;
+  @ViewChild('messageArea') messageArea: ElementRef;
+  @ViewChild('msgInput') msgInput: ElementRef;
   @ViewChild('list') listObj: any;
 
-  constructor(private wsService: WebSocketService) { }
+
+  constructor(private wsService: WebSocketService, private router: Router) {
+    this.loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
+   }
 
   ngOnInit(): void {
-    this.connectToSocketAndGetMessage();
-    this.joinedChat();
-    this.left();
+    this.listenToSocket();
   }
 
-  private connectToSocketAndGetMessage(): void {
-    this.wsService.listen$('connected').subscribe(data => {
-      console.log(data);
+  private listenToSocket(): void {
+
+    this.wsService.sendMessage('joinRoom', this.loginInfo);
+
+    this.wsService.listen$('connected').subscribe(msg => {
+      this.userId = msg.userId;
+      this.messageList.push(msg);
+      const container = this.messageArea.nativeElement;
+      container.scrollTop = container.scrollHeight;
     });
     this.wsService.listen$('serverMessage').subscribe(msg => {
+      const container = this.messageArea.nativeElement;
       this.messageList.push(msg);
-      console.log(this.messageList);
+      setTimeout(() => {
+        container.scrollTop = container.scrollHeight;
+      }, 200);
     });
-  }
 
-  private joinedChat(): void {
-    this.wsService.listen$('joined').subscribe(data => {
-      console.log(data);
+    this.wsService.listen$('joined').subscribe(msg => {
+      this.messageList.push(msg);
+      const container = this.messageArea.nativeElement;
+      container.scrollTop = container.scrollHeight;
     });
-  }
 
-  private left(): void {
-    this.wsService.listen$('left').subscribe(data => {
-      console.log(data);
+    this.wsService.listen$('left').subscribe(msg => {
+      console.log(msg);
+      this.messageList.push(msg);
+      setTimeout(() => {
+        const container = this.messageArea.nativeElement;
+        container.scrollTop = container.scrollHeight;
+      }, 2000);
     });
   }
 
   sendMessage(): void {
     this.wsService.sendMessage('newMessage', this.newMessage);
     this.newMessage = '';
+    this.msgInput.nativeElement.focus();
+    const container = this.messageArea.nativeElement;
+    container.scrollTop = container.scrollHeight;
+  }
+
+  enterButtonPressed($event: any): any {
+    let pressed;
+    if (this.newMessage) {
+      pressed = $event.keyCode === 13 && this.sendMessage();
+      if (pressed) {
+        const container = this.messageArea.nativeElement;
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+    return pressed;
+  }
+
+  onLeaveChat(): void {
+    this.wsService.sendMessage('disconnect');
+    this.wsService.offSocket();
+    localStorage.removeItem('loginInfo');
+  }
+
+  ngOnDestroy(): void {
+    this.wsService.sendMessage('disconnect');
+    this.router.navigate(['/']);
+    // localStorage.removeItem('loginInfo');
   }
 }
