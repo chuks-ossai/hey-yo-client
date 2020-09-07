@@ -12,6 +12,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public loginInfo: any;
   public userId: string;
   public messageList: any[] = [];
+  public roomData: any;
   @ViewChild('messageArea') messageArea: ElementRef;
   @ViewChild('msgInput') msgInput: ElementRef;
   @ViewChild('list') listObj: any;
@@ -47,6 +48,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
       this.messageList.push(msg);
       const container = this.messageArea.nativeElement;
       container.scrollTop = container.scrollHeight;
+    });
+
+    this.wsService.listen$('roomData').subscribe(data => {
+      this.roomData = data;
     });
 
     this.wsService.listen$('left').subscribe(msg => {

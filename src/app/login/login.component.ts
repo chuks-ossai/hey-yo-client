@@ -9,7 +9,6 @@ import { WebSocketService } from '../web-socket.service';
 })
 export class LoginComponent implements OnInit {
 
-  public email = '';
   public username = '';
   public room = '';
 
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   joinRoom(): void {
-    const loginFormValue = { email: this.email, username: this.username, room: this.room };
+    const loginFormValue = { username: this.username, room: this.room };
     localStorage.setItem('loginInfo', JSON.stringify(loginFormValue));
     this.router.navigate(['chat']);
   }
