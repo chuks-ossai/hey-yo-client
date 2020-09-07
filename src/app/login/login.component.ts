@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private wsService: WebSocketService) { }
 
   ngOnInit(): void {
-    console.log('should disconnect here');
     this.wsService.sendMessage('disconnect');
     this.wsService.offSocket();
   }
