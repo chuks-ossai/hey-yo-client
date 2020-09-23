@@ -7,12 +7,14 @@ import { AuthService, LoginService } from '../../services';
   selector: 'heyyo-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ AuthService, LoginService]
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
 
   public username = '';
   public room = '';
+  public errMessage: string;
+  public isProcessing = false;
 
   constructor(
     private router: Router,
@@ -33,15 +35,29 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.service.valid) {
+      this.isProcessing = true;
       this.authService.loginUser(this.service.value).subscribe(response => {
         if (response.Success) {
           console.log(response.Results[0]);
+          this.isProcessing = false;
           this.service.f.reset();
+          this.router.navigate(['streams']);
         } else {
-          console.log(response.ErrorMessage);
+          this.isProcessing = false;
+          if (response.ErrorMessage) {
+            this.errMessage = response.ErrorMessage;
+          }
         }
-      }, err => console.error(err.error.ErrorMessage));
+      }, err => {
+          this.isProcessing = false;
+          if (err.error.ErrorMessage) {
+          this.errMessage = err.error.ErrorMessage;
+        }
+      });
     }
   }
 
+  onFocus(): void {
+    this.errMessage = null;
+  }
 }

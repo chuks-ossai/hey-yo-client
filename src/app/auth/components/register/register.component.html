@@ -10,36 +10,46 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errMessage">
+              {{errMessage}}
+            </div>
             <form class="user" novalidate [formGroup]="this.service.f" (ngSubmit)="onSubmit()">
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="signupfirst-name" formControlName="firstName"
-                    placeholder="First Name">
+                  <input type="text" class="form-control form-control-user" id="signupfirst-name" formControlName="firstName" (focus)="onFocus()"
+                    placeholder="First Name" [ngClass]="!service.f.controls['firstName'].valid && service.f.controls['firstName'].touched ? 'border-danger': ''">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['firstName'].valid && service.f.controls['firstName'].touched">First Name field is required</span>
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control form-control-user" id="signuplast-name" formControlName="lastName"
-                    placeholder="Last Name">
+                  <input type="text" class="form-control form-control-user" id="signuplast-name" formControlName="lastName" (focus)="onFocus()"
+                    placeholder="Last Name" [ngClass]="!service.f.controls['lastName'].valid && service.f.controls['lastName'].touched ? 'border-danger': ''">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['lastName'].valid && service.f.controls['lastName'].touched">Last Name field is required</span>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="signupusername" formControlName="username"
-                  placeholder="Username">
+                <input type="text" class="form-control form-control-user" id="signupusername" formControlName="username" (focus)="onFocus()"
+                  placeholder="Username" [ngClass]="!service.f.controls['username'].valid && service.f.controls['username'].touched ? 'border-danger': ''">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['username'].valid && service.f.controls['username'].touched">Username field is required</span>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="signupemail" formControlName="email"
-                  placeholder="Email Address">
+                <input type="text" class="form-control form-control-user" id="signupemail" formControlName="email" (focus)="onFocus()"
+                  placeholder="Email Address" [ngClass]="!service.f.controls['email'].valid && service.f.controls['email'].touched ? 'border-danger': ''">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['email'].valid && service.f.controls['email'].touched">Email field is required</span>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="password" class="form-control form-control-user" id="signuppassword" formControlName="password"
-                    placeholder="Password">
+                  <input type="password" class="form-control form-control-user" id="signuppassword" formControlName="password" (focus)="onFocus()"
+                    placeholder="Password" [ngClass]="!service.f.controls['password'].valid && service.f.controls['password'].touched ? 'border-danger': ''">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['password'].valid && service.f.controls['password'].touched">Password field is required</span>
                 </div>
                 <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="signuprepeat-password" formControlName="repeatPassword"
-                    placeholder="Repeat Password">
+                  <input type="password" class="form-control form-control-user" id="signuprepeat-password" formControlName="repeatPassword" (focus)="onFocus()"
+                    placeholder="Confirm Password" [ngClass]="!service.f.controls['repeatPassword'].valid && service.f.controls['repeatPassword'].touched ? 'border-danger': ''">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['repeatPassword'].valid && service.f.controls['repeatPassword'].touched">Confirm Password field is required</span>
                 </div>
               </div>
-              <button (click)="onSubmit()" class="btn btn-primary btn-user btn-block">
+              <button (click)="onSubmit()" class="btn btn-primary btn-user btn-block" [disabled]="!service.f.valid">
+                <i class="fa fa-spinner fa-pulse" aria-hidden="true" *ngIf="isProcessing"></i> &nbsp;
                 Register Account
               </button>
               <hr>

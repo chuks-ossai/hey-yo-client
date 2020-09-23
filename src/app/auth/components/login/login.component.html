@@ -15,13 +15,19 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
+                <div class="alert alert-danger" role="alert" *ngIf="errMessage">
+                  {{errMessage}}
+                </div>
                 <form class="user" novalidate [formGroup]="this.service.f" (ngSubmit)="onSubmit()">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="loginusername" placeholder="Enter Username" formControlName="username">
+                  <div class="form-group text-right">
+                    <input type="text" class="form-control form-control-user" id="loginusername" placeholder="Enter Username" formControlName="username" [ngClass]="!service.f.controls['username'].valid && service.f.controls['username'].touched ? 'border-danger': ''" (focus)="onFocus()">
+                    <span class="text-danger pr-3 small" *ngIf="!service.f.controls['username'].valid && service.f.controls['username'].touched">Username field is required</span>
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="loginpassword" formControlName="password"
-                      placeholder="Password">
+                  <div class="form-group text-right">
+                    <input type="password" class="form-control form-control-user" id="loginpassword" formControlName="password" (focus)="onFocus()"
+                      placeholder="Password" [ngClass]="!service.f.controls['password'].valid && service.f.controls['password'].touched ? 'border-danger' : ''">
+                      <span class="text-danger pr-3 small"
+                        *ngIf="!service.f.controls['password'].valid && service.f.controls['password'].touched">Password field is required</span>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
@@ -29,7 +35,8 @@
                       <label class="custom-control-label" for="customCheck">Remember Me</label>
                     </div>
                   </div>
-                  <button class="btn btn-primary btn-user btn-block" (click)="onSubmit()">
+                  <button class="btn btn-primary btn-user btn-block" [disabled]="!service.f.valid">
+                    <i class="fa fa-spinner fa-pulse" aria-hidden="true" *ngIf="isProcessing"></i> &nbsp;
                     Login
                   </button>
                   <hr>

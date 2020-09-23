@@ -9,13 +9,9 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'chat',
+    path: 'streams',
     component: LayoutComponent
-  },
-  {
-    path: 'chat',
-    component: LayoutComponent
-  },
+  }
 ];
 
 @NgModule({
