@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { WebSocketService } from '../web-socket.service';
+import { WebSocketService } from '../../../web-socket.service';
 
 @Component({
   selector: 'heyyo-login',
