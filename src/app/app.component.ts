@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   autoNavigateLoggedinUser(): void {
     if (this.tsService.getToken()) {
-      this.router.navigate(['streams']);
+      this.router.navigate(['d/streams']);
     }
   }
 }

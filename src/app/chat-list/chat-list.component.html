@@ -16,3 +16,39 @@
     </div>
   </ng-template>
 </ng-template>
+<!-- <div class="col-12">
+            <div #messageArea class="overflow-auto mb-3 message-area p-2">
+              <div *ngFor="let message of messageList">
+                <div class="alert alert-info ml-auto msg-r" role="alert" *ngIf="message.userId && message.userId == userId && !message.isChatbot">
+                  <p>{{message.content}}</p>
+                  <div class="d-flex justify-content-end">
+                    <span class="text-muted pr-3">{{message.time}}</span>&nbsp;<i class="fas fa-check text-success"></i>
+                  </div>
+                </div>
+                <div class="alert alert-secondary msg-l" role="alert" *ngIf="message.userId && message.userId !== userId && !message.isChatbot" style="max-width: 50%">
+                  <small class="d-block">{{message.username}}</small>
+                  <p>{{message.content}}</p>
+                  <div class="d-flex justify-content-end">
+                    <span class="text-muted pr-3">{{message.time}}</span>
+                  </div>
+                </div>
+                <div class="alert alert-primary w-25 mx-auto msg-center" role="alert" *ngIf="message.isChatbot">
+                  <p>{{message.content}}</p>
+                  <div class="d-flex justify-content-end">
+                    <span class="text-muted pr-3">{{message.time}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form class="user d-flex align-items-center">
+              <div class="form-group w-100 mb-0">
+                <input #msgInput type="text" class="form-control form-control-user" [(ngModel)]="newMessage" name="newMessage"  (keyup)="enterButtonPressed($event)" placeholder="Enter Chat Message...">
+              </div>
+              <button class="btn btn-secondary btn-user btn-sm">
+                <i class="fas fa-paperclip"></i>
+              </button>
+              <button type="button" class="btn btn-primary btn-user btn-sm" (click)="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div> -->

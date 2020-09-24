@@ -1,0 +1,87 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="far fa-comments"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">Hey Yo <sup>!</sup></div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item active">
+    <a class="nav-link" href="#">
+      <i class="fas fa-fw fa-user-circle"></i>
+      <span>My Profile</span></a>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Quick Navigation
+  </div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item" title="Streams">
+    <a class="nav-link collapsed" [routerLink]="['streams']">
+      <i class="fas fa-fw fa-rss"></i>
+      <span>Streams &nbsp; <span
+          class="badge badge-success">{{data?.streams ? data?.streams : 0 }}</span></span>
+    </a>
+  </li>
+  <li class="nav-item" title="People">
+    <a class="nav-link collapsed" [routerLink]="['people']">
+      <i class="fas fa-fw fa-users"></i>
+      <span>People &nbsp; <span
+          class="badge badge-success">{{data?.people ? data?.people : 0 }}</span></span>
+    </a>
+  </li>
+  <li class="nav-item" title="Following">
+    <a class="nav-link collapsed" [routerLink]="['following']">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Following &nbsp; <span
+          class="badge badge-success">{{data?.following ? data?.following : 0 }}</span></span>
+    </a>
+  </li>
+  <li class="nav-item" title="My Followers">
+    <a class="nav-link collapsed" [routerLink]="['followers']">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Followers &nbsp; <span
+          class="badge badge-success">{{data?.followers ? data?.followers : 0 }}</span></span>
+    </a>
+  </li>
+  <li class="nav-item" title="My Photos">
+    <a class="nav-link collapsed" [routerLink]="['photos']">
+      <i class="fas fa-fw fa-picture-o"></i>
+      <span>Photos &nbsp; <span
+          class="badge badge-success">{{data?.photos ? data?.photos : 0 }}</span></span>
+    </a>
+  </li>
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline" title="Toggle Sidebar">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+
+  <li class="nav-item" title="Logout">
+    <a class="nav-link collapsed" (click)="onLogoutButtonClicked()">
+      <i class="fas fa-fw fa-sign-out-alt"></i>
+      <span>Logout</span>
+    </a>
+  </li>
+  <li class="nav-item" title="Download Mobile App">
+    <a class="nav-link collapsed" (click)="scanBarcode()">
+      <i class="fas fa-fw fa-mobile"></i>
+      <span>Download Mobile App</span>
+    </a>
+  </li>
+</ul>
+<!-- End of Sidebar -->

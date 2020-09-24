@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.tsService.storeToken(response.Results[0].token);
           this.isProcessing = false;
           this.service.f.reset();
-          this.router.navigate(['streams']);
+          this.router.navigate(['d/streams']);
         } else {
           this.isProcessing = false;
           if (response.ErrorMessage) {

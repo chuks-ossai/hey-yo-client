@@ -14,6 +14,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
   public userId: string;
   public messageList: any[] = [];
   public roomData: any;
+  itemsCount = {
+    streams: 2,
+    people: 5,
+    following: 3,
+    followers: 0,
+    photos: 1
+  };
+
   @ViewChild('messageArea') messageArea: ElementRef;
   @ViewChild('msgInput') msgInput: ElementRef;
   @ViewChild('list') listObj: any;
@@ -24,7 +32,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit(): void {
-    this.listenToSocket();
+    // this.listenToSocket();
   }
 
   private listenToSocket(): void {

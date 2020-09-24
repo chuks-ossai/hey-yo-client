@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 import { LayoutComponent } from './layout/layout.component';
-
+import {
+  StreamsComponent,
+  PeopleComponent,
+  FollowingComponent,
+  FollowersComponent,
+  PhotosComponent
+} from './layout/components';
 
 const routes: Routes = [
   {
@@ -10,9 +16,17 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'streams',
+    path: 'd',
     component: LayoutComponent,
-    canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard],
+    children: [
+      { path: '', redirectTo: 'streams', pathMatch: 'full' },
+      { path: 'streams', component: StreamsComponent },
+      { path: 'people', component: PeopleComponent },
+      { path: 'following', component: FollowingComponent },
+      { path: 'followers', component: FollowersComponent },
+      { path: 'photos', component: PhotosComponent },
+    ]
   }
 ];
 
