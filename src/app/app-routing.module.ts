@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 import { LayoutComponent } from './layout/layout.component';
 
 
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'streams',
-    component: LayoutComponent
+    component: LayoutComponent,
+    canActivate: [AuthenticatedGuard]
   }
 ];
 

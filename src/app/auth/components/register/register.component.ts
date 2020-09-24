@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, RegisterService } from '../../services';
+import { AuthService } from 'src/app/core/services';
+import { RegisterService } from '../../services';
 
 @Component({
   selector: 'heyyo-register',

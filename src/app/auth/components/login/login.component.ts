@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService, TokenStoreService } from 'src/app/core/services';
 import { WebSocketService } from '../../../web-socket.service';
-import { AuthService, LoginService } from '../../services';
+import { LoginService } from '../../services';
 
 @Component({
   selector: 'heyyo-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private wsService: WebSocketService,
     private authService: AuthService,
+    private tsService: TokenStoreService,
     public service: LoginService) { }
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser(this.service.value).subscribe(response => {
         if (response.Success) {
           console.log(response.Results[0]);
+          this.tsService.storeToken(response.Results[0].token);
           this.isProcessing = false;
           this.service.f.reset();
           this.router.navigate(['streams']);

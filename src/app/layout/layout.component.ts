@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { WebSocketService } from '../web-socket.service';
 import { Router } from '@angular/router';
+import { TokenStoreService } from '../core/services';
 
 @Component({
   selector: 'heyyo-layout',
@@ -18,7 +19,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   @ViewChild('list') listObj: any;
 
 
-  constructor(private wsService: WebSocketService, private router: Router) {
+  constructor(private wsService: WebSocketService, private router: Router, private tsService: TokenStoreService) {
     this.loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
    }
 
@@ -88,6 +89,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.wsService.sendMessage('disconnect');
     this.wsService.offSocket();
     localStorage.removeItem('loginInfo');
+  }
+
+  onLogoutButtonClicked(): void {
+    this.tsService.removeToken();
+    this.router.navigate(['login']);
   }
 
   ngOnDestroy(): void {

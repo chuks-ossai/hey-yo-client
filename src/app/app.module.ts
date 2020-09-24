@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ChatListComponent } from './chat-list/chat-list.component';
   ],
   imports: [
     BrowserModule,
+    CoreModule.forRoot(),
     AppRoutingModule,
     FormsModule
   ],

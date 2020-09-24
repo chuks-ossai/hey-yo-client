@@ -8,9 +8,7 @@ const BASE_URL = 'http://localhost:3002';
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) {
-    console.log
-  }
+  constructor(private http: HttpClient) { }
 
   public registerUser(formData: any): Observable<any> {
     return this.http.post(`${BASE_URL}${ApiEndpoints.USER.register}`, formData);
