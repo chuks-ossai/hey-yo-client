@@ -100,7 +100,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   onLogoutButtonClicked(): void {
-    this.tsService.removeToken();
+    this.tsService.logout();
     this.router.navigate(['login']);
   }
 

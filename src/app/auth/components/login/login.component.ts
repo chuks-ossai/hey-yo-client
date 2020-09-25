@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser(this.service.value).subscribe(response => {
         if (response.Success) {
           console.log(response.Results[0]);
-          this.tsService.storeToken(response.Results[0].token);
+          this.tsService.storeToken(response.Results[0]);
           this.isProcessing = false;
           this.service.f.reset();
           this.router.navigate(['d/streams']);

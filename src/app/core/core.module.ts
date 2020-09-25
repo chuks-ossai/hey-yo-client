@@ -5,7 +5,10 @@ import { throwIfAlreadyLoaded } from './guards/module-import-guard';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { AuthService, TokenStoreService } from './services';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -14,6 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ]
 })
@@ -32,7 +42,12 @@ export class CoreModule {
       providers: [
         AuthService,
         TokenStoreService,
-        AuthenticatedGuard
+        AuthenticatedGuard,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+        }
       ]
     };
   }

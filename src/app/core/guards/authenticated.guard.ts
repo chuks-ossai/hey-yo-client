@@ -17,7 +17,7 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.tsService.getToken()) {
+    if (this.tsService.getToken() && this.tsService.isLoggedIn()) {
       return true;
     } else {
       this.router.navigate(['login']);

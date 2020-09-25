@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PostEditorComponent } from '../posts/post-editor/post-editor.component';
+import { StreamsService } from '../../services/streams.service';
 
 @Component({
   selector: 'heyyo-streams',

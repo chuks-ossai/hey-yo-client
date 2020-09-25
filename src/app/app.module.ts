@@ -23,6 +23,8 @@ import {
   FooterComponent,
   HeaderComponent} from './layout/com-parts';
 import { PostEditorComponent } from './layout/components/posts/post-editor/post-editor.component';
+import { AuthModule } from './auth/auth.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,10 +48,11 @@ import { PostEditorComponent } from './layout/components/posts/post-editor/post-
     BrowserModule,
     CoreModule.forRoot(),
     AppRoutingModule,
-    FormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     FormModalComponent
