@@ -20,6 +20,9 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
     if (this.tsService.getToken() && this.tsService.isLoggedIn()) {
       return true;
     } else {
+      if (this.tsService.isLoggedOut()) {
+        this.tsService.removeToken();
+      }
       this.router.navigate(['login']);
       return false;
     }

@@ -12,9 +12,10 @@ export class TokenStoreService {
     if (!responseObj) { return; }
 
     this.removeToken();
-    const expiresAt = moment().add(responseObj.auth.expires);
+    // const expiresAt = moment().add(responseObj.auth.expires);
     localStorage.setItem(KEYS_CONSTANT.accessToken, responseObj.auth.token);
-    localStorage.setItem(KEYS_CONSTANT.tokenExpires, JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem(KEYS_CONSTANT.tokenExpires, responseObj.auth.expires);
+
   }
 
   public getToken(): any {
@@ -31,17 +32,12 @@ export class TokenStoreService {
   }
 
   public isLoggedIn(): boolean {
-    return moment().isBefore(this.getExpiration());
+    const expiration = localStorage.getItem(KEYS_CONSTANT.tokenExpires);
+    const expiresAt = JSON.parse(expiration);
+    return Date.now() < expiresAt;
   }
 
   isLoggedOut(): boolean {
     return !this.isLoggedIn();
   }
-
-  getExpiration(): any {
-    const expiration = localStorage.getItem(KEYS_CONSTANT.tokenExpires);
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
-
 }

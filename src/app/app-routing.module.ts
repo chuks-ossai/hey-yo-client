@@ -20,12 +20,12 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthenticatedGuard],
     children: [
-      { path: '', redirectTo: 'streams', pathMatch: 'full' },
       { path: 'streams', component: StreamsComponent },
       { path: 'people', component: PeopleComponent },
       { path: 'following', component: FollowingComponent },
       { path: 'followers', component: FollowersComponent },
       { path: 'photos', component: PhotosComponent },
+      { path: '', redirectTo: 'streams', pathMatch: 'full' },
     ]
   }
 ];
