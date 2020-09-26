@@ -8,7 +8,7 @@ import { POST_ENDPOINTS } from '../../constants/api-endpoints/post.endpoints.con
 const BASE_URL = 'http://localhost:3002';
 
 @Injectable()
-export class StreamsService {
+export class PostService {
 
   constructor(private http: HttpClient) { }
 

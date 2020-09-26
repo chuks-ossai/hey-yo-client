@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { StreamsService } from 'src/app/layout/services/streams.service';
+import { PostService } from 'src/app/layout/services/post.service';
 
 @Component({
   selector: 'heyyo-post-editor',
   templateUrl: './post-editor.component.html',
   styleUrls: ['./post-editor.component.scss'],
-  providers: [StreamsService]
+  providers: [PostService]
 })
 export class PostEditorComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class PostEditorComponent implements OnInit {
   public errMessage: string;
   isProcessing = false;
 
-  constructor(public bsModalRef: BsModalRef, public fb: FormBuilder, public streamsService: StreamsService) {
+  constructor(public bsModalRef: BsModalRef, public fb: FormBuilder, public postService: PostService) {
     this.postForm = this.buildForm();
   }
 
@@ -32,7 +32,7 @@ export class PostEditorComponent implements OnInit {
   onSubmit(): void {
     if (this.postForm.valid) {
       this.isProcessing = true;
-      this.streamsService.addPost(this.postForm.value).subscribe(response => {
+      this.postService.addPost(this.postForm.value).subscribe(response => {
         if (response.Success) {
           console.log(response);
           this.isProcessing = false;
