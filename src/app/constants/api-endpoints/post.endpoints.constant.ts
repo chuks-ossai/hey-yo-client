@@ -10,12 +10,12 @@
  */
 
 export const POST_ENDPOINTS = {
-  create: '/api/v1/post/new',
-  update: '/api/v1/post/edit',
-  getAll: '/api/v1/post/getAll',
-  getById: '/api/v1/post/get-by-id',
-  getByUserId: '/api/v1/post/get-by-user',
-  deleteById: '/api/v1/post/delete-by-id',
-  deleteByUser: '/api/v1/post/delete-by-user',
-  deleteAllUserPosts: '/api/v1/post/delete-all-user-posts',
+  create: '/api/v1/posts/new',
+  update: '/api/v1/posts/edit',
+  getAll: '/api/v1/posts/getAll',
+  getById: '/api/v1/posts/get-by-id',
+  getByUserId: '/api/v1/posts/get-by-user',
+  deleteById: '/api/v1/posts/delete-by-id',
+  deleteByUser: '/api/v1/posts/delete-by-user',
+  deleteAllUserPosts: '/api/v1/posts/delete-all-user-posts',
 };

@@ -15,4 +15,8 @@ export class PostService {
   public addPost(formData: any): Observable<any> {
     return this.http.post(`${BASE_URL}${POST_ENDPOINTS.create}`, formData);
   }
+
+  public getAllPosts(): Observable<any> {
+    return this.http.get(`${BASE_URL}${POST_ENDPOINTS.getAll}`);
+  }
 }

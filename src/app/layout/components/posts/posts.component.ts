@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IPost } from 'src/app/interfaces/post.interface';
+import * as moment from 'moment';
+import { WebSocketService } from 'src/app/web-socket.service';
 
 @Component({
   selector: 'heyyo-posts',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  @Input() posts: IPost;
+
+  constructor(private wsService: WebSocketService) { }
 
   ngOnInit(): void {
   }
 
+  onThumbsUpClicked(): void {
+
+  }
+
+  onCommentClicked(): void {
+
+  }
+
+  formatDate(value: string): any {
+    return moment(value).fromNow();
+  }
 }

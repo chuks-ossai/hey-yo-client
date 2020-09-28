@@ -1,8 +1,4 @@
 <!--Header Info-->
 <heyyo-header [buttonText]="'Create Post'" [pageTitle]="'Streams'" (buttonClicked)="onCreatePostButtonClicked()"></heyyo-header>
 <!--end of Header Info-->
-<div class="row">
- <heyyo-posts></heyyo-posts>
-</div>
-
-  <heyyo-form-modal></heyyo-form-modal>
+ <heyyo-posts [posts]="posts"></heyyo-posts>

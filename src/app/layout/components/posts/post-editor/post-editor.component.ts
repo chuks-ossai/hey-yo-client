@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { PostService } from 'src/app/layout/services/post.service';
+import { WebSocketService } from 'src/app/web-socket.service';
 
 @Component({
   selector: 'heyyo-post-editor',
@@ -15,7 +16,7 @@ export class PostEditorComponent implements OnInit {
   public errMessage: string;
   isProcessing = false;
 
-  constructor(public bsModalRef: BsModalRef, public fb: FormBuilder, public postService: PostService) {
+  constructor(public bsModalRef: BsModalRef, public fb: FormBuilder, public postService: PostService, private wsService: WebSocketService) {
     this.postForm = this.buildForm();
   }
 
@@ -25,6 +26,7 @@ export class PostEditorComponent implements OnInit {
 
   buildForm(): FormGroup {
     return this.fb.group({
+      title: [null, Validators.required],
       content: [null, Validators.required]
     });
   }
@@ -38,6 +40,8 @@ export class PostEditorComponent implements OnInit {
           this.isProcessing = false;
           this.postForm.reset();
           this.bsModalRef.hide();
+          this.wsService.sendMessage('refreshData', {});
+
         } else {
           this.isProcessing = false;
           if (response.ErrorMessage) {

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'heyyo-top-nav',
@@ -8,6 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class TopNavComponent implements OnInit {
 
   @Output() logout = new EventEmitter();
+  @Input() user: IUser;
 
   constructor() { }
 

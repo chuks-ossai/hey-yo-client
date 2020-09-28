@@ -40,4 +40,13 @@ export class TokenStoreService {
   isLoggedOut(): boolean {
     return !this.isLoggedIn();
   }
+
+  getUserPayload(): any {
+    const token = this.getToken();
+    let payload;
+    if (token) {
+      payload = JSON.parse(atob(token.split('.')[1]));
+    }
+    return payload.sub;
+  }
 }
