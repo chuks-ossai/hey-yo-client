@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IPost } from 'src/app/interfaces/post.interface';
 
 import { POST_ENDPOINTS } from '../../constants/api-endpoints/post.endpoints.constant';
 
@@ -18,5 +19,9 @@ export class PostService {
 
   public getAllPosts(): Observable<any> {
     return this.http.get(`${BASE_URL}${POST_ENDPOINTS.getAll}`);
+  }
+
+  public likePost(post: IPost): Observable<any> {
+    return this.http.post(`${BASE_URL}${POST_ENDPOINTS.like}`, post);
   }
 }

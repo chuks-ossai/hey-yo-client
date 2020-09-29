@@ -13,6 +13,7 @@ export const POST_ENDPOINTS = {
   create: '/api/v1/posts/new',
   update: '/api/v1/posts/edit',
   getAll: '/api/v1/posts/getAll',
+  like: '/api/v1/posts/like',
   getById: '/api/v1/posts/get-by-id',
   getByUserId: '/api/v1/posts/get-by-user',
   deleteById: '/api/v1/posts/delete-by-id',

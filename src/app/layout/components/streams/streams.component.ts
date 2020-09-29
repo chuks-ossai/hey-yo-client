@@ -4,6 +4,8 @@ import { PostEditorComponent } from '../posts/post-editor/post-editor.component'
 import { PostService } from '../../services/post.service';
 import { IPost } from '../../../interfaces/post.interface';
 import { WebSocketService } from 'src/app/web-socket.service';
+import { TokenStoreService } from 'src/app/core/services';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'heyyo-streams',
@@ -17,12 +19,15 @@ export class StreamsComponent implements OnInit {
   bsModalRef: BsModalRef;
   isProcessing = true;
   posts: IPost;
+  user: IUser;
 
-  constructor(private modalService: BsModalService, private postService: PostService, private wsService: WebSocketService) { }
+  constructor(
+    private modalService: BsModalService,
+    private postService: PostService,
+    private wsService: WebSocketService, private tokenService: TokenStoreService) { }
 
   ngOnInit(): void {
-    this.getAllPosts();
-    this.listenToSocket();
+    this.loadData();
   }
 
   onCreatePostButtonClicked(): void {
@@ -30,6 +35,12 @@ export class StreamsComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true
     });
+  }
+
+  loadData(): void {
+    this.user = this.tokenService.getUserPayload();
+    this.getAllPosts();
+    this.listenToSocket();
   }
 
   listenToSocket(): void {
@@ -43,7 +54,6 @@ export class StreamsComponent implements OnInit {
     this.postService.getAllPosts().subscribe(response => {
       if (response.Success) {
         this.isProcessing = false;
-        console.log(response.Results);
         this.posts = response.Results;
       } else {
         this.isProcessing = false;
@@ -57,5 +67,28 @@ export class StreamsComponent implements OnInit {
         console.log('catch error', err.error.ErrorMessage);
       }
     });
+  }
+
+  likePost(event: IPost): void {
+    this.postService.likePost(event).subscribe(response => {
+      if (response.Success) {
+        this.isProcessing = false;
+        this.wsService.sendMessage('refreshData', {});
+      } else {
+        this.isProcessing = false;
+        if (response.ErrorMessage) {
+         console.log('response failure', response.ErrorMessage);
+        }
+      }
+    }, (err: any) => {
+      this.isProcessing = false;
+      if (err.error.ErrorMessage) {
+        console.log('catch error', err.error.ErrorMessage);
+      }
+    });
+  }
+
+  commentPost(event: any): void {
+    console.log(event);
   }
 }
