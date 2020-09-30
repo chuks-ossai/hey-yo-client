@@ -7,7 +7,7 @@ import {
   PeopleComponent,
   FollowingComponent,
   FollowersComponent,
-  PhotosComponent
+  PhotosComponent, PostDetailComponent
 } from './layout/components';
 
 const routes: Routes = [
@@ -21,6 +21,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard],
     children: [
       { path: 'streams', component: StreamsComponent },
+      { path: 'post/:id', component: PostDetailComponent },
       { path: 'people', component: PeopleComponent },
       { path: 'following', component: FollowingComponent },
       { path: 'followers', component: FollowersComponent },

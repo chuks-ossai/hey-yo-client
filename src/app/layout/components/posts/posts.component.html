@@ -2,8 +2,11 @@
 
   <div class="col-xl-6 col-md-12 mb-3 w-100" *ngFor="let post of posts">
     <div class="card border-left-primary shadow h-100 pt-2">
-      <div class="card-header text-primary text-uppercase">
+      <div class="card-header text-uppercase d-flex justify-content-between align-items-center">
         <h6>{{post.title}}</h6>
+        <button class="btn btn-sm btn-dark btn-circle" (click)="onPostDetailClicked(post._id)">
+          <i class="fa fa-external-link"></i> post details
+        </button>
       </div>
       <div class="card-body">
         <div class="row no-gutters align-items-center">
@@ -15,7 +18,7 @@
             <hr>
             <div class="mb-0 d-flex justify-content-between p-3">
               <div>
-                <button class="btn btn-sm mr-3" [ngClass]="!usernameExist(post.likes, user.username) ? 'btn-primary' : 'btn-danger'" (click)="onThumbsUpClicked(post)">
+                <button class="btn btn-sm mr-3" [ngClass]="!usernameExist(post.likes, user.username) ? 'btn-primary' : 'btn-danger'" (click)="onThumbsUpClicked(post, usernameExist(post.likes, user.username))">
                   <span *ngIf="!usernameExist(post.likes, user.username)">
                     <i class="fa fa-thumbs-up"></i> Like&nbsp;
                   {{post.totalLikes}}
@@ -25,7 +28,7 @@
                   {{post.totalLikes}}
                 </span>
                 </button>
-                <button class="btn btn-warning btn-sm" click="onCommentClicked(post)">
+                <button class="btn btn-warning btn-sm" (click)="onCommentClicked(post)">
                   <i class="fa fa-comment"></i> Comment&nbsp;
                   {{post.comments.length}}
                 </button>

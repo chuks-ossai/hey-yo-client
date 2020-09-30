@@ -15,7 +15,7 @@ import {
   FollowersComponent,
   PhotosComponent,
   PostsComponent,
-  FormModalComponent
+  PostDetailComponent
 } from './layout/components';
 import {
   SidebarComponent,
@@ -23,8 +23,8 @@ import {
   FooterComponent,
   HeaderComponent} from './layout/com-parts';
 import { PostEditorComponent } from './layout/components/posts/post-editor/post-editor.component';
-import { AuthModule } from './auth/auth.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommentEditorComponent } from './layout/components/posts/comment-editor/comment-editor.component';
+
 
 @NgModule({
   declarations: [
@@ -41,8 +41,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
     PostsComponent,
-    FormModalComponent,
-    PostEditorComponent
+    PostEditorComponent,
+    CommentEditorComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +56,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    FormModalComponent
+    CommentEditorComponent
   ]
 })
 export class AppModule { }

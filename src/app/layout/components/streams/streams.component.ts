@@ -6,6 +6,7 @@ import { IPost } from '../../../interfaces/post.interface';
 import { WebSocketService } from 'src/app/web-socket.service';
 import { TokenStoreService } from 'src/app/core/services';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { CommentEditorComponent } from '../posts/comment-editor/comment-editor.component';
 
 @Component({
   selector: 'heyyo-streams',
@@ -15,7 +16,6 @@ import { IUser } from 'src/app/interfaces/user.interface';
 })
 export class StreamsComponent implements OnInit {
 
-  @ViewChild('postFormModal') postFormModal: ElementRef;
   bsModalRef: BsModalRef;
   isProcessing = true;
   posts: IPost;
@@ -32,6 +32,17 @@ export class StreamsComponent implements OnInit {
 
   onCreatePostButtonClicked(): void {
     this.bsModalRef = this.modalService.show(PostEditorComponent, {
+      backdrop: true,
+      ignoreBackdropClick: true
+    });
+  }
+
+  onCommentButtonClicked(post: IPost): void {
+    const initialState = {
+      post
+    };
+    this.bsModalRef = this.modalService.show(CommentEditorComponent, {
+      initialState,
       backdrop: true,
       ignoreBackdropClick: true
     });
@@ -69,8 +80,8 @@ export class StreamsComponent implements OnInit {
     });
   }
 
-  likePost(event: IPost): void {
-    this.postService.likePost(event).subscribe(response => {
+  likePost(event: any): void {
+    this.postService.likePost(event.post, event.isLiked).subscribe(response => {
       if (response.Success) {
         this.isProcessing = false;
         this.wsService.sendMessage('refreshData', {});

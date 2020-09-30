@@ -1,0 +1,42 @@
+<heyyo-header [buttonText]="'Add Comment'" [pageTitle]="'Post Detail'" (buttonClicked)="onCreateCommentButtonClicked()">
+</heyyo-header>
+<div class="container mx-auto mb-5">
+  <div class="row mb-5">
+    <div class=" col-12 img-cotainer">
+      <img src="https://i1.wp.com/metro.co.uk/wp-content/uploads/2018/04/599381442.jpg?quality=90&strip=all&zoom=1&resize=540%2C404&ssl=1" class="img-fluid">
+    </div>
+    <div class="col-12 mt-5 post-content">
+      <h3>{{post?.title}}</h3>
+      {{post?.content}}
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="!(post?.comments.length)">
+      <h5>No comment For this post</h5>
+    </div>
+    <div class="col-12 mb-2" *ngFor="let comment of post?.comments.reverse()">
+
+      <!-- Default Card Example -->
+      <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-end">
+            <img src="https://i1.wp.com/metro.co.uk/wp-content/uploads/2018/04/599381442.jpg?quality=90&strip=all&zoom=1&resize=540%2C404&ssl=1" class="img-thumbnail profile-img">
+            <p class="ml-1 mb-1">
+              {{comment.username}}
+            </p>
+          </div>
+          <p>
+            Created: &nbsp;
+            <span class="text-warning font-weight-bold">
+              {{formatDate(comment.createdAt)}}
+            </span>
+          </p>
+        </div>
+        <div class="card-body">
+          {{comment.comment }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

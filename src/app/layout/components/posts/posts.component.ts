@@ -5,6 +5,7 @@ import { IPost } from 'src/app/interfaces/post.interface';
 import { WebSocketService } from 'src/app/web-socket.service';
 import { PostService } from '../../services/post.service';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'heyyo-posts',
@@ -16,19 +17,19 @@ export class PostsComponent implements OnInit {
   @Input() posts: IPost;
   @Input() user: IUser;
 
-  @Output() likePost = new EventEmitter<IPost>();
+  @Output() likePost = new EventEmitter<any>();
   @Output() commentPost = new EventEmitter<any>();
 
-  constructor(private wsService: WebSocketService, private postService: PostService) { }
+  constructor(private wsService: WebSocketService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
-  onThumbsUpClicked(post: IPost): void {
-    this.likePost.emit(post);
+  onThumbsUpClicked(post: IPost, isLiked: boolean): void {
+    this.likePost.emit({post, isLiked});
   }
 
-  onCommentClicked(post: IPost): void {
+  onCommentClicked(post: string): void {
     this.commentPost.emit(post);
   }
 
@@ -38,5 +39,9 @@ export class PostsComponent implements OnInit {
 
   formatDate(value: string): any {
     return moment(value).fromNow();
+  }
+
+  onPostDetailClicked(postId: string): void {
+    this.router.navigate(['../post', `${postId}`], { relativeTo: this.route });
   }
 }

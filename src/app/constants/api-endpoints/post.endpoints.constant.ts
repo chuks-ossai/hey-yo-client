@@ -14,6 +14,8 @@ export const POST_ENDPOINTS = {
   update: '/api/v1/posts/edit',
   getAll: '/api/v1/posts/getAll',
   like: '/api/v1/posts/like',
+  comment: '/api/v1/posts/comment',
+  unLike: '/api/v1/posts/unlike',
   getById: '/api/v1/posts/get-by-id',
   getByUserId: '/api/v1/posts/get-by-user',
   deleteById: '/api/v1/posts/delete-by-id',
