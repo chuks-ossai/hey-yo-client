@@ -7,12 +7,22 @@ import { USER_ENDPOINTS } from '../../constants/api-endpoints/user.endpoints.con
 
 const BASE_URL = 'http://localhost:3002';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllMyPosts(): Observable<any> {
-    return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getMyPosts}`);
+  public getUsers(): Observable<any> {
+    return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getAll}`);
+  }
+
+  public getUser(): Observable<any> {
+    return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getById}`);
+  }
+
+  public getMyDetails(): Observable<any> {
+    return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getMyDetails}`);
   }
 }

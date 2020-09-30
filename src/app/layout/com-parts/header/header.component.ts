@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input() pageTitle: string;
+  @Input() showButton = true;
   @Input() buttonText: string;
   @Input() icon = 'fa-plus';
 

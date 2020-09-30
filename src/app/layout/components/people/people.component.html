@@ -1,1 +1,114 @@
-<p>people works!</p>
+<heyyo-header [pageTitle]="'People'" [showButton]="false">
+</heyyo-header>
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-xl-3 col-md-6 col-sm-12 my-2" *ngFor="let user of users">
+      <div class="card profile-card-3">
+        <div class="background-block">
+          <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="profile-sample1" class="background" />
+        </div>
+        <div class="profile-thumb-block">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile" />
+        </div>
+        <div class="card-content">
+          <h2>{{user.firstName}}&nbsp;{{user.lastName}}<small>Designer</small></h2>
+            <div class="icon-block">
+              <a href="#">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-google-plus"></i>
+              </a>
+            </div>
+            <div class="action-button">
+              <button class="btn btn-warning btn-sm mr-2" (click)="onFollowClicked(null)">
+                <i class="fa fa-plus"></i> Follow
+              </button>
+              <button class="btn btn-secondary btn-sm" (click)="onChatClicked(null)">
+                <i class="fa fa-comments"></i> Chat
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-xl-3 col-md-6 col-sm-12 my-2">
+      <div class="card profile-card-3">
+        <div class="background-block">
+          <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="profile-sample1" class="background" />
+        </div>
+        <div class="profile-thumb-block">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile" />
+        </div>
+        <div class="card-content">
+          <h2>Justin Mccoy<small>Designer</small></h2>
+            <div class="icon-block">
+              <a href="#">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-12 my-2">
+      <div class="card profile-card-3">
+        <div class="background-block">
+          <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="profile-sample1" class="background" />
+        </div>
+        <div class="profile-thumb-block">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile" />
+        </div>
+        <div class="card-content">
+          <h2>Justin Mccoy<small>Designer</small></h2>
+            <div class="icon-block">
+              <a href="#">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-12 my-2">
+      <div class="card profile-card-3">
+        <div class="background-block">
+          <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="profile-sample1" class="background" />
+        </div>
+        <div class="profile-thumb-block">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile" />
+        </div>
+        <div class="card-content">
+          <h2>Justin Mccoy<small>Designer</small></h2>
+            <div class="icon-block">
+              <a href="#">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
