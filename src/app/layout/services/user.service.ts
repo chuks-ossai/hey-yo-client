@@ -26,6 +26,14 @@ export class UserService {
     return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getMyDetails}`);
   }
 
+  public markAsRead(notificationId: string): Observable<any> {
+    return this.http.put(`${BASE_URL}${USER_ENDPOINTS.markNotification}/${notificationId}`, null);
+  }
+
+  public deleteNotification(notificationId: string): Observable<any> {
+    return this.http.put(`${BASE_URL}${USER_ENDPOINTS.deleteNotification}/${notificationId}`, null);
+  }
+
   public followUser(userId: string, isFollowing: boolean): Observable<any> {
     if (isFollowing) {
       return this.http.put(`${BASE_URL}${USER_ENDPOINTS.unfollowUser}/${userId}`, null);
