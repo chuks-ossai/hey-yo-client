@@ -2,6 +2,9 @@
 </heyyo-header>
 <div class="container-fluid mb-5">
   <div class="row">
+    <div class="col-12  justify-content-center align-items-center" *ngIf="!users?.length">
+      <h4 class="text-center">Nobody to view</h4>
+    </div>
     <div class="col-xl-3 col-md-6 col-sm-12 my-2" *ngFor="let user of users">
       <div class="card profile-card-3">
         <div class="background-block">
@@ -25,8 +28,8 @@
               </a>
             </div>
             <div class="action-button">
-              <button class="btn btn-warning btn-sm mr-2" (click)="onFollowClicked(null)">
-                <i class="fa fa-plus"></i> Follow
+              <button class="btn btn-sm mr-2" (click)="onFollowClicked(user._id, usernameExist(user.followers))" [ngClass]="!usernameExist(user.followers) ? 'btn-warning' : 'btn-danger'">
+                <i class="fa" [ngClass]="!usernameExist(user.followers) ? 'fa-plus' : 'fa-check'"></i> Follow<span *ngIf="usernameExist(user.followers)">ing</span>
               </button>
               <button class="btn btn-secondary btn-sm" (click)="onChatClicked(null)">
                 <i class="fa fa-comments"></i> Chat

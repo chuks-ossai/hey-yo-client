@@ -4,5 +4,6 @@ export const USER_ENDPOINTS = {
   getById: '/api/v1/users/user',
   getAll: '/api/v1/users/getAll',
   getMyDetails: '/api/v1/users/my/details',
-  getAllPosts: '/api/v1/posts/getAll'
+  followUser: '/api/v1/users/user/follow',
+  unfollowUser: '/api/v1/users/user/unfollow'
 };

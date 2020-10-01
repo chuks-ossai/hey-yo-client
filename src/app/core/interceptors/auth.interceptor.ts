@@ -3,9 +3,12 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { KEYS_CONSTANT } from '../../constants/keys.contstant';
 import { catchError } from 'rxjs/operators';
+import { TokenStoreService } from '../services';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
+  constructor(private tsService: TokenStoreService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -21,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError(err => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
-              window.history.back();
+              this.tsService.logout();
             }
           }
           return throwError(err);

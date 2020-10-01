@@ -25,4 +25,11 @@ export class UserService {
   public getMyDetails(): Observable<any> {
     return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getMyDetails}`);
   }
+
+  public followUser(userId: string, isLiked: boolean): Observable<any> {
+    if (isLiked) {
+      return this.http.put(`${BASE_URL}${USER_ENDPOINTS.unfollowUser}/${userId}`, null);
+    }
+    return this.http.put(`${BASE_URL}${USER_ENDPOINTS.followUser}/${userId}`, null);
+  }
 }

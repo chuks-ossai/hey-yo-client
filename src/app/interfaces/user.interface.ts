@@ -3,6 +3,8 @@ export interface IUser {
   firstName: string;
   lastName: string;
   username: string;
+  following: IUser[];
+  followers: IUser[];
   _id: string;
   createAt: Date;
   updatedAt: Date;

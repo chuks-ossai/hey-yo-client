@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
+import { Router } from '@angular/router';
 import { KEYS_CONSTANT } from '../../constants/keys.contstant';
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStoreService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public storeToken(responseObj: any): void {
     if (!responseObj) { return; }
@@ -29,6 +29,7 @@ export class TokenStoreService {
 
   public logout(): void {
     this.removeToken();
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn(): boolean {

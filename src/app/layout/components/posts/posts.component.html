@@ -1,5 +1,7 @@
 <div class="row mx-5">
-
+<div class="col-12  justify-content-center align-items-center" *ngIf="!posts?.length">
+  <h4 class="text-center">No posts to available at the moment</h4>
+</div>
   <div class="col-xl-6 col-md-12 mb-3 w-100" *ngFor="let post of posts">
     <div class="card border-left-primary shadow h-100 pt-2">
       <div class="card-header text-uppercase d-flex justify-content-between align-items-center">

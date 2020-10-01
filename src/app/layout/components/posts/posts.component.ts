@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PostsComponent implements OnInit {
 
-  @Input() posts: IPost;
+  @Input() posts: IPost[];
   @Input() user: IUser;
 
   @Output() likePost = new EventEmitter<any>();
