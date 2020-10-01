@@ -28,7 +28,7 @@
               </a>
             </div>
             <div class="action-button">
-              <button class="btn btn-sm mr-2" (click)="onFollowClicked(user._id, usernameExist(user.followers))" [ngClass]="!usernameExist(user.followers) ? 'btn-warning' : 'btn-danger'">
+              <button class="btn btn-sm mr-2" (click)="onFollowClicked(user._id, usernameExist(user.followers))" [ngClass]="!usernameExist(user.followers) ? 'btn-warning' : 'btn-success'">
                 <i class="fa" [ngClass]="!usernameExist(user.followers) ? 'fa-plus' : 'fa-check'"></i> Follow<span *ngIf="usernameExist(user.followers)">ing</span>
               </button>
               <button class="btn btn-secondary btn-sm" (click)="onChatClicked(null)">

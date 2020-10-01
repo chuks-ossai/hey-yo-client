@@ -1,1 +1,43 @@
-<p>following works!</p>
+<heyyo-header [pageTitle]="'Following'" [showButton]="false">
+</heyyo-header>
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-12  justify-content-center align-items-center" *ngIf="!me?.following?.length">
+      <h4 class="text-center">Nobody is following you yet</h4>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-12 my-2" *ngFor="let user of me?.following">
+      <div class="card profile-card-3">
+        <div class="background-block">
+          <img
+            src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="profile-sample1" class="background" />
+        </div>
+        <div class="profile-thumb-block">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile" />
+        </div>
+        <div class="card-content">
+          <h2>{{user.firstName}}&nbsp;{{user.lastName}}<small>Designer</small></h2>
+          <div class="icon-block">
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-google-plus"></i>
+            </a>
+          </div>
+          <div class="action-button">
+            <button class="btn btn-sm mr-2 btn-success" (click)="onFollowClicked(user._id)">
+              <i class="fa fa-check"></i> Following
+            </button>
+            <button class="btn btn-secondary btn-sm" (click)="onChatClicked(null)">
+              <i class="fa fa-comments"></i> Chat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
