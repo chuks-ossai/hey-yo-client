@@ -27,7 +27,7 @@ export class FollowersComponent implements OnInit {
   }
 
   listenToSocket(): void {
-    this.wsService.listen$('followersRefreshed').subscribe(() => {
+    this.wsService.listen$('pageRefresh').subscribe(() => {
       this.getMyDetails();
     });
   }
@@ -56,7 +56,7 @@ export class FollowersComponent implements OnInit {
       if (response.Success) {
         this.isProcessing = false;
         console.log(response.Results);
-        this.wsService.sendMessage('refreshFollowers', {});
+        this.wsService.sendMessage('refreshData', {});
       } else {
         this.isProcessing = false;
         if (response.ErrorMessage) {

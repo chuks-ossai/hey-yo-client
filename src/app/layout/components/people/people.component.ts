@@ -29,7 +29,7 @@ export class PeopleComponent implements OnInit {
   }
 
   listenToSocket(): void {
-    this.wsService.listen$('peopleRefresh').subscribe(() => {
+    this.wsService.listen$('pageRefresh').subscribe(() => {
       this.getUsers();
     });
   }
@@ -58,7 +58,7 @@ export class PeopleComponent implements OnInit {
       if (response.Success) {
         this.isProcessing = false;
         console.log(response.Results);
-        this.wsService.sendMessage('refreshUsers', {});
+        this.wsService.sendMessage('refreshData', {});
       } else {
         this.isProcessing = false;
         if (response.ErrorMessage) {
