@@ -1,4 +1,16 @@
 <!--Header Info-->
 <heyyo-header [buttonText]="'Create Post'" [pageTitle]="'Streams'" (buttonClicked)="onCreatePostButtonClicked()"></heyyo-header>
 <!--end of Header Info-->
- <heyyo-posts [posts]="posts" [user]="user" (likePost)="likePost($event)" (commentPost)="onCommentButtonClicked($event)"></heyyo-posts>
+<tabset [justified]="true">
+  <tab heading="All Streams">
+    <div class="mt-4">
+      <heyyo-posts [posts]="posts" [user]="user" (likePost)="likePost($event)" (commentPost)="onCommentButtonClicked($event)"></heyyo-posts>
+    </div>
+  </tab>
+  <tab heading="Most Popular Streams">
+    <div class="mt-4">
+      <heyyo-posts [posts]="topPosts" [user]="user" (likePost)="likePost($event)"
+        (commentPost)="onCommentButtonClicked($event)"></heyyo-posts>
+    </div>
+  </tab>
+</tabset>

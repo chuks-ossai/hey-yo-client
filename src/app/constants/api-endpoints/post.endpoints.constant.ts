@@ -10,15 +10,15 @@
  */
 
 export const POST_ENDPOINTS = {
-  create: '/api/v1/posts/new',
-  update: '/api/v1/posts/edit',
-  getAll: '/api/v1/posts/getAll',
-  like: '/api/v1/posts/like',
   comment: '/api/v1/posts/comment',
-  unLike: '/api/v1/posts/unlike',
-  getById: '/api/v1/posts/get-by-id',
-  getByUserId: '/api/v1/posts/get-by-user',
+  create: '/api/v1/posts/new',
+  deleteAllUserPosts: '/api/v1/posts/delete-all-user-posts',
   deleteById: '/api/v1/posts/delete-by-id',
   deleteByUser: '/api/v1/posts/delete-by-user',
-  deleteAllUserPosts: '/api/v1/posts/delete-all-user-posts',
+  getAll: '/api/v1/posts/getAll',
+  getById: '/api/v1/posts/get-by-id',
+  getByUserId: '/api/v1/posts/get-by-user',
+  like: '/api/v1/posts/like',
+  unLike: '/api/v1/posts/unlike',
+  update: '/api/v1/posts/edit',
 };

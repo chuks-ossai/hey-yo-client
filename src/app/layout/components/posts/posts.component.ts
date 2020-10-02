@@ -3,7 +3,6 @@ import * as moment from 'moment';
 import _ from 'lodash';
 import { IPost } from 'src/app/interfaces/post.interface';
 import { WebSocketService } from 'src/app/web-socket.service';
-import { PostService } from '../../services/post.service';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 

@@ -100,6 +100,26 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
+  onMarkAllClicked(): void {
+    this.userService.markAllNotifications().subscribe(response => {
+      if (response.Success) {
+        this.isProcessing = false;
+        console.log(response.Results);
+        this.wsService.sendMessage('refreshData', {});
+      } else {
+        this.isProcessing = false;
+        if (response.ErrorMessage) {
+          console.log('response failure', response.ErrorMessage);
+        }
+      }
+    }, (err: any) => {
+      this.isProcessing = false;
+      if (err.error.ErrorMessage) {
+        console.log('catch error', err.error.ErrorMessage);
+      }
+    });
+  }
+
   onDeleteClicked(notificationId: string): void {
     this.userService.deleteNotification(notificationId).subscribe(response => {
       if (response.Success) {

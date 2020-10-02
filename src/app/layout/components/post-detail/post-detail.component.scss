@@ -1,6 +1,8 @@
-.profile-img {
-  width: 3em;
-  height: 3em;
-  border-radius: 100%;
-  margin-right: 10px
+.profile {
+  border-radius: 50%;
+  max-width: 50px;
+  opacity: 1;
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transform: translate(-18%, 0%);
+  transform: translate(-18%, 0%);
 }

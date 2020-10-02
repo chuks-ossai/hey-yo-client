@@ -45,7 +45,7 @@
 
     <!-- Nav Item - Alerts -->
     <li class="nav-item dropdown no-arrow mx-1">
-      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+      <a class="nav-link dropdown-toggle" href="#" title="Unread Notifications" id="alertsDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bell fa-fw"></i>
         <!-- Counter - Alerts -->
@@ -57,7 +57,10 @@
         <h6 class="dropdown-header">
           New Notifications
         </h6>
-        <a class="dropdown-item d-flex align-items-center" [routerLink]="['notifications']" *ngFor="let notification of getUnreadNotifications()">
+        <span class="dropdown-item d-flex justify-content-center align-items-center" *ngIf="!(getUnreadNotifications() && getUnreadNotifications().length)">
+          Not Unread Notifications
+        </span>
+        <span class="dropdown-item d-flex align-items-center" *ngFor="let notification of getUnreadNotifications()">
           <div class="mr-3">
             <div class="icon-circle">
               <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile image" class="profile">
@@ -67,14 +70,14 @@
             <div class="small text-gray-500">{{notification.created}}</div>
             <span [ngClass]="notification.read ? '' : 'font-weight-bold'">{{notification.message}}</span>
           </div>
-        </a>
+        </span>
         <a class="dropdown-item text-center small text-gray-500" [routerLink]="['notifications']">Show All Alerts</a>
       </div>
     </li>
 
     <!-- Nav Item - Messages -->
     <li class="nav-item dropdown no-arrow mx-1">
-      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" title="Unread chat messages" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-envelope fa-fw"></i>
         <!-- Counter - Messages -->

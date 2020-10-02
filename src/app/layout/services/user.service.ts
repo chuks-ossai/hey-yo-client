@@ -40,4 +40,8 @@ export class UserService {
     }
     return this.http.put(`${BASE_URL}${USER_ENDPOINTS.followUser}/${userId}`, null);
   }
+
+  public markAllNotifications(): Observable<any> {
+    return this.http.put(`${BASE_URL}${USER_ENDPOINTS.markAll}`, null);
+  }
 }

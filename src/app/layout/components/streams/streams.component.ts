@@ -18,7 +18,8 @@ export class StreamsComponent implements OnInit {
 
   bsModalRef: BsModalRef;
   isProcessing = true;
-  posts: IPost;
+  posts: IPost[];
+  topPosts: IPost[];
   user: IUser;
 
   constructor(
@@ -65,7 +66,8 @@ export class StreamsComponent implements OnInit {
     this.postService.getAllPosts().subscribe(response => {
       if (response.Success) {
         this.isProcessing = false;
-        this.posts = response.Results;
+        this.posts = response.Results[0].posts;
+        this.topPosts = response.Results[0].topPosts;
       } else {
         this.isProcessing = false;
         if (response.ErrorMessage) {
