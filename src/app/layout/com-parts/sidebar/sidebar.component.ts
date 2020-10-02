@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  @Input() userInfo: any;
+  @Input() user: any;
   @Input() data: any;
 
   @Output() logout = new EventEmitter();

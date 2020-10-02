@@ -3,6 +3,7 @@ import { WebSocketService } from '../web-socket.service';
 import { Router } from '@angular/router';
 import { TokenStoreService } from '../core/services';
 import { IUser } from '../interfaces/user.interface';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'heyyo-layout',
@@ -12,6 +13,7 @@ import { IUser } from '../interfaces/user.interface';
 export class LayoutComponent implements OnInit, OnDestroy {
   public newMessage: string;
   public loginInfo: IUser;
+  public me: IUser;
   public userId: string;
   public messageList: any[] = [];
   public roomData: any;
@@ -28,21 +30,48 @@ export class LayoutComponent implements OnInit, OnDestroy {
   @ViewChild('list') listObj: any;
 
 
-  constructor(private wsService: WebSocketService, private router: Router, private tsService: TokenStoreService) {
+  constructor(
+    private wsService: WebSocketService,
+    private router: Router,
+    private tsService: TokenStoreService,
+    private userService: UserService
+  ) {
    }
 
   ngOnInit(): void {
-    this.listenToSocket();
-    this.loginInfo = this.tsService.getUserPayload();
+    this.loadData();
   }
 
+  loadData(): void {
+    this.geMyDetail();
+    this.listenToSocket();
+  }
 
+  geMyDetail(): void {
+    this.userService.getMyDetails().subscribe(response => {
+      if (response.Success) {
+        this.me = response.Results[0];
+        console.log(this.me);
+      } else {
+        if (response.ErrorMessage) {
+          console.log('response failure', response.ErrorMessage);
+        }
+      }
+    }, (err: any) => {
+      if (err.error.ErrorMessage) {
+        console.log('catch error', err.error.ErrorMessage);
+      }
+    });
+ }
 
 
   private listenToSocket(): void {
 
     // this.wsService.sendMessage('joinRoom', this.loginInfo);
 
+    this.wsService.listen$('pageRefresh').subscribe(() => {
+      this.geMyDetail();
+    });
     // this.wsService.listen$('connected').subscribe(msg => {
     //   this.userId = msg.userId;
     //   this.messageList.push(msg);

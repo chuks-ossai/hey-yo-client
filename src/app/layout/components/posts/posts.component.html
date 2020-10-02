@@ -1,57 +1,59 @@
-<div class="row mx-5">
-<div class="col-12  justify-content-center align-items-center" *ngIf="!posts?.length">
-  <h4 class="text-center">No posts to available at the moment</h4>
-</div>
-  <div class="col-xl-6 col-md-12 mb-3 w-100" *ngFor="let post of posts">
-    <div class="card border-left-primary shadow h-100 pt-2">
-      <div class="card-header text-uppercase d-flex justify-content-between align-items-center">
-        <h6>{{post.title}}</h6>
-        <button class="btn btn-sm btn-dark btn-circle" (click)="onPostDetailClicked(post._id)">
-          <i class="fa fa-external-link"></i> post details
-        </button>
-      </div>
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="mb-3">
-              <img src="https://i1.wp.com/metro.co.uk/wp-content/uploads/2018/04/599381442.jpg?quality=90&strip=all&zoom=1&resize=540%2C404&ssl=1" class="img-fluid" alt="{{post.title}}" width="180" />
-            </div>
-            <div class="mb-1">{{post.content}}</div>
-            <hr>
-            <div class="mb-0 d-flex justify-content-between p-3">
-              <div>
-                <button class="btn btn-sm mr-3" [ngClass]="!usernameExist(post.likes, user.username) ? 'btn-primary' : 'btn-danger'" (click)="onThumbsUpClicked(post, usernameExist(post.likes, user.username))">
-                  <span *ngIf="!usernameExist(post.likes, user.username)">
-                    <i class="fa fa-thumbs-up"></i> Like&nbsp;
-                  {{post.totalLikes}}
-                </span>
-                  <span *ngIf="usernameExist(post.likes, user.username)">
-                    <i class="fa fa-thumbs-down"></i> UnLike&nbsp;
-                  {{post.totalLikes}}
-                </span>
-                </button>
-                <button class="btn btn-warning btn-sm" (click)="onCommentClicked(post)">
-                  <i class="fa fa-comment"></i> Comment&nbsp;
-                  {{post.comments.length}}
-                </button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12  justify-content-center align-items-center" *ngIf="!posts?.length">
+      <h4 class="text-center">No posts to available at the moment</h4>
+    </div>
+    <div class="col-xl-6 col-md-12 mb-3 w-100" *ngFor="let post of posts">
+      <div class="card border-left-primary shadow h-100 pt-2">
+        <div class="card-header text-uppercase d-flex justify-content-between align-items-center">
+          <h6>{{post.title}}</h6>
+          <button class="btn btn-sm btn-dark btn-circle" (click)="onPostDetailClicked(post._id)">
+            <i class="fa fa-external-link"></i> post details
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="mb-3">
+                <img src="https://i1.wp.com/metro.co.uk/wp-content/uploads/2018/04/599381442.jpg?quality=90&strip=all&zoom=1&resize=540%2C404&ssl=1" class="img-fluid" alt="{{post.title}}" width="180" />
               </div>
-              <div>
-                Created By:
-                <span class="font-weight-bold text-success">
-                  {{post.user.username}}
-                </span>
-                <br>
-                <span>
-                  {{formatDate(post.createdAt) }}
-                </span>
+              <div class="mb-1">{{post.content}}</div>
+              <hr>
+              <div class="mb-0 d-flex justify-content-between p-3">
+                <div>
+                  <button class="btn btn-sm mr-2" [ngClass]="!usernameExist(post.likes, user.username) ? 'btn-primary' : 'btn-danger'" (click)="onThumbsUpClicked(post, usernameExist(post.likes, user.username))">
+                    <span *ngIf="!usernameExist(post.likes, user.username)">
+                      <i class="fa fa-thumbs-up"></i> Like&nbsp;
+                    {{post.totalLikes}}
+                  </span>
+                    <span *ngIf="usernameExist(post.likes, user.username)">
+                      <i class="fa fa-thumbs-down"></i> UnLike&nbsp;
+                    {{post.totalLikes}}
+                  </span>
+                  </button>
+                  <button class="btn btn-warning btn-sm" (click)="onCommentClicked(post)">
+                    <i class="fa fa-comment"></i> Comment&nbsp;
+                    {{post.comments.length}}
+                  </button>
+                </div>
+                <div>
+                  Created By:
+                  <span class="font-weight-bold text-success">
+                    {{post.user.username}}
+                  </span>
+                  <br>
+                  <span>
+                    {{formatDate(post.createdAt) }}
+                  </span>
 
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="care-footer">
+        <div class="care-footer">
 
+        </div>
       </div>
     </div>
   </div>

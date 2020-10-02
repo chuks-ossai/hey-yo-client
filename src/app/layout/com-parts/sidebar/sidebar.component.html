@@ -30,44 +30,68 @@
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" title="Streams">
     <a class="nav-link collapsed" [routerLink]="['streams']">
-      <i class="fas fa-fw fa-rss"></i>
-      <span>Streams &nbsp; <span
-          class="badge badge-warning" >{{data?.streams ? data?.streams : 0 }}</span></span>
+      <span class=" d-flex justify-content-between">
+        <span>
+          <i class="fas fa-fw fa-rss"></i>
+          Streams
+        </span>
+        <span class="badge badge-success">{{user?.posts.length ? user?.posts.length : 0 }}</span>
+      </span>
     </a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" title="People">
     <a class="nav-link collapsed" [routerLink]="['people']">
-      <i class="fas fa-fw fa-users"></i>
-      <span>People &nbsp; <span
-          class="badge badge-warning" >{{data?.people ? data?.people : 0 }}</span></span>
+      <span class=" d-flex justify-content-between">
+        <span>
+          <i class="fas fa-fw fa-users"></i>
+          People
+        </span>
+        <span class="badge badge-success">{{user?.people ? user?.people : 0 }}</span>
+      </span>
     </a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" title="Following">
     <a class="nav-link collapsed" [routerLink]="['following']">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Following &nbsp; <span
-          class="badge badge-warning ml-auto">{{data?.following ? data?.following : 0 }}</span></span>
+      <span class=" d-flex justify-content-between">
+        <span>
+          <i class="fas fa-fw fa-users"></i>
+          Following
+        </span>
+        <span class="badge badge-success">{{user?.following.length ? user?.following.length : 0 }}</span>
+      </span>
     </a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" title="My Followers">
     <a class="nav-link collapsed" [routerLink]="['followers']">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Followers &nbsp; <span
-          class="badge badge-warning" >{{data?.followers ? data?.followers : 0 }}</span></span>
+      <span class=" d-flex justify-content-between">
+        <span>
+          <i class="fas fa-fw fa-users"></i>
+          Followers
+        </span>
+        <span class="badge badge-success">{{user?.followers.length ? user?.followers.length : 0 }}</span>
+      </span>
     </a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" title="My Photos">
     <a class="nav-link collapsed active" [routerLink]="['photos']">
-      <i class="fas fa-fw fa-picture-o"></i>
-      <span>Photos &nbsp; <span
-          class="badge badge-warning" >{{data?.photos ? data?.photos : 0 }}</span></span>
+      <span class=" d-flex justify-content-between">
+        <span>
+          <i class="fa fa-fw fa-picture-o"></i>
+          Photos
+        </span>
+        <span class="badge badge-success">{{user?.photos ? user?.photos : 0 }}</span>
+      </span>
     </a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" title="My Notifications">
     <a class="nav-link collapsed active" [routerLink]="['notifications']">
-      <i class="fas fa-fw fa-picture-o"></i>
-      <span>Notifications &nbsp; <span
-          class="badge badge-warning" >{{data?.notifications ? data?.notifications : 0 }}</span></span>
+      <span class=" d-flex justify-content-between">
+        <span>
+          <i class="fas fa-fw fa-bell"></i>
+          Notifications
+        </span>
+        <span class="badge badge-success">{{user?.notifications.length ? user?.notifications.length : 0 }}</span>
+      </span>
     </a>
   </li>
   <!-- Divider -->

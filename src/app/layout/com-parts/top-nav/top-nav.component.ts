@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { INotification } from 'src/app/interfaces/notification.interface';
 import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
@@ -18,5 +19,12 @@ export class TopNavComponent implements OnInit {
 
   onLogoutButtonClicked(): void {
     this.logout.emit();
+  }
+
+  getUnreadNotifications(): INotification[] {
+    if (this.user) {
+      return this.user.notifications.filter(v => v.read === false).reverse();
+    }
+    return [];
   }
 }
