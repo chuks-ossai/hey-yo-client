@@ -111,7 +111,7 @@
             </ul>
           </div>
         </div>
-        <div class="card-body msg_card_body">
+        <div ngx-auto-scroll lock-y-offset="10" observe-attributes class="card-body msg_card_body">
           <div class="d-flex mb-4" *ngFor="let message of chat?.messages" [ngClass]="message.sender === me._id ? 'justify-content-end' : 'justify-content-start'">
             <div class="img_cont_msg" *ngIf="!(message.sender === me._id)">
               <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
@@ -124,13 +124,16 @@
               <img src="https://randomuser.me/api/portraits/men/41.jpg" class="rounded-circle user_img_msg">
             </div>
           </div>
+          <div class="d-flex justify-content-start mb-4 pl-5" *ngIf="typing">
+            <small class="font-italic">{{receiverUsename}} is typing...</small>
+          </div>
         </div>
         <div class="card-footer">
           <div class="input-group">
             <div class="input-group-append">
               <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
             </div>
-            <input name="" class="form-control type_msg" placeholder="Type your message..." type="text" [(ngModel)]="newMessage" />
+            <textarea name="" class="form-control type_msg" placeholder="Type your message..." type="text" [(ngModel)]="newMessage" (keyup)="onEnterKeyPressed($event)"></textarea>
             <div class="input-group-append">
               <span class="input-group-text emj_btn"><i class="fa fa-smile text-warning"></i></span>
             </div>

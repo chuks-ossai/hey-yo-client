@@ -22,27 +22,9 @@ export class ChatComponent implements OnInit {
   receiver: IUser;
   receiverUsename: string;
   chat: IChat;
-  chatList = [
-    {
-      img_url: 'https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg',
-      message: 'Hi, how are you samim?',
-      time: '8:40 AM, Today',
-      me: false
-    },
-    {
-      img_url: 'https://randomuser.me/api/portraits/men/41.jpg',
-      message: 'Hi Khalid i am good tnx how about you?',
-      time: '8:55 AM, Today',
-      me: true
-    },
-    {
-      img_url: 'https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg',
-      message: 'I am good too, thank you for your chat template',
-      time: '9:00 AM, Today',
-      me: false
-    }
-  ];
   userId = '';
+  typing = false;
+  typingMsg: any;
 
   constructor(
     private wsService: WebSocketService,
@@ -52,9 +34,9 @@ export class ChatComponent implements OnInit {
     this.route.params.pipe(take(1)).subscribe(val => this.receiverUsename = val.username);
    }
 
-  ngOnInit(): void {
-    this.loadData();
-  }
+   ngOnInit(): void {
+     this.loadData();
+    }
 
   loadData(): void {
     this.isProcessing = true;
@@ -63,16 +45,38 @@ export class ChatComponent implements OnInit {
     this.listenToSocket();
   }
 
+  joinChat(): void {
+    console.log('me has loaded');
+    this.wsService.sendMessage('joinChat', {
+      sender: this.me.username,
+      receiver: this.receiverUsename
+    });
+  }
+
   listenToSocket(): void {
     this.wsService.listen$('pageRefresh').subscribe(() => {
       this.getMessages(this.receiver._id);
     });
+
+    this.wsService.listen$('senderTyping').subscribe(data => {
+      if (data.sender === this.receiverUsename) {
+        this.typing = true;
+      }
+    });
+
+    this.wsService.listen$('senderStoppedTyping').subscribe(data => {
+      if (data.sender === this.receiverUsename) {
+        this.typing = false;
+      }
+    });
   }
+
   getMyDetails(): void {
     this.userService.getMyDetails().subscribe(response => {
       if (response.Success) {
         this.isProcessing = false;
         this.me = response.Results[0];
+        this.joinChat();
       } else {
         this.isProcessing = false;
         if (response.ErrorMessage) {
@@ -109,12 +113,11 @@ export class ChatComponent implements OnInit {
   }
 
   onSendMessage(): void {
-    if (this.newMessage) {
+    if (this.newMessage.trim()) {
       const data = {
         receiverName: this.receiver.username,
-        message: this.newMessage
+        message: this.newMessage.trim()
       };
-      console.log(this.receiver._id);
       this.chatService.senNewMessage(this.receiver._id, data).subscribe(response => {
         if (response.Success) {
           this.wsService.sendMessage('refreshData', {});
@@ -135,8 +138,8 @@ export class ChatComponent implements OnInit {
   getMessages(receiverId: string): void {
     this.chatService.getMessages(receiverId).subscribe(response => {
       if (response.Success) {
-        console.log(response.Results[0]);
         this.chat = response.Results[0];
+        this.typing = false;
       } else {
         if (response.ErrorMessage) {
           console.log('response failure', response.ErrorMessage);
@@ -149,8 +152,27 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  enterButtonPressed(): void {
+  onEnterKeyPressed(event): void {
+    if (event.keyCode === 13) {
+      this.onSendMessage();
+      this.typing = false;
+    } else {
+      this.wsService.sendMessage('typing', {
+        sender: this.me.username,
+        receiver: this.receiverUsename
+      });
 
+      if (this.typingMsg) {
+        clearTimeout(this.typingMsg);
+      }
+
+      this.typingMsg = setTimeout(() => {
+        this.wsService.sendMessage('stopTyping', {
+          sender: this.me.username,
+          receiver: this.receiverUsename
+        });
+      }, 5000);
+    }
   }
 
   getFormatedDate(dateValue: Date): string {
