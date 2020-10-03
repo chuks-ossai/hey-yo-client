@@ -1,3 +1,4 @@
+export * from './chat/chat.component';
 export * from './followers/followers.component';
 export * from './following/following.component';
 export * from './notifications/notifications.component';

@@ -3,6 +3,7 @@ export const USER_ENDPOINTS = {
   followUser: '/api/v1/users/user/follow',
   getAll: '/api/v1/users/getAll',
   getById: '/api/v1/users/user',
+  getByUsername: '/api/v1/users/user/by-name',
   getMyDetails: '/api/v1/users/my/details',
   login: '/api/v1/auth/login',
   markAll: '/api/v1/users/my/notifications/mark-all',

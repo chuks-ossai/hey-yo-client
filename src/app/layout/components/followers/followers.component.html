@@ -34,9 +34,9 @@
               <i class="fa" [ngClass]="!amFollowing(follower?.followers) ? 'fa-plus' : 'fa-check'"></i> Follow<span
                 *ngIf="amFollowing(follower?.followers)">ing</span>
             </button>
-            <button class="btn btn-secondary btn-sm" (click)="onChatClicked(null)">
+            <a class="btn btn-secondary btn-sm" [routerLink]="['../', 'chat', follower.username]">
               <i class="fa fa-comments"></i> Chat
-            </button>
+            </a>
           </div>
         </div>
       </div>

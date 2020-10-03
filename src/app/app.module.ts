@@ -15,7 +15,8 @@ import {
   FollowersComponent,
   PhotosComponent,
   PostsComponent,
-  PostDetailComponent, NotificationsComponent
+  PostDetailComponent, NotificationsComponent,
+  ChatComponent
 } from './layout/components';
 import {
   SidebarComponent,
@@ -44,7 +45,8 @@ import { CommentEditorComponent } from './layout/components/posts/comment-editor
     PostEditorComponent,
     CommentEditorComponent,
     PostDetailComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

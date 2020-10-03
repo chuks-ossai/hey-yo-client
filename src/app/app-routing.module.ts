@@ -7,7 +7,8 @@ import {
   PeopleComponent,
   FollowingComponent,
   FollowersComponent,
-  PhotosComponent, PostDetailComponent, NotificationsComponent
+  PhotosComponent, PostDetailComponent, NotificationsComponent,
+  ChatComponent
 } from './layout/components';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'followers', component: FollowersComponent },
       { path: 'photos', component: PhotosComponent },
       { path: 'notifications', component: NotificationsComponent },
+      { path: 'chat/:username', component: ChatComponent },
       { path: '', redirectTo: 'streams', pathMatch: 'full' },
     ]
   }

@@ -32,9 +32,9 @@
             <button class="btn btn-sm mr-2 btn-success" (click)="onFollowClicked(user._id)">
               <i class="fa fa-check"></i> Following
             </button>
-            <button class="btn btn-secondary btn-sm" (click)="onChatClicked(null)">
+            <a class="btn btn-secondary btn-sm" [routerLink]="['../', 'chat', user.username]">
               <i class="fa fa-comments"></i> Chat
-            </button>
+            </a>
           </div>
         </div>
       </div>

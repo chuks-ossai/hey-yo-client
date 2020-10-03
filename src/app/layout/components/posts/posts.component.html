@@ -7,15 +7,15 @@
       <div class="card border-left-primary shadow h-100 pt-2">
         <div class="card-header text-uppercase d-flex justify-content-between align-items-center">
           <h6>{{post.title}}</h6>
-          <button class="btn btn-sm btn-dark btn-circle" (click)="onPostDetailClicked(post._id)">
-            <i class="fa fa-external-link"></i> post details
-          </button>
+          <a class="btn btn-primary btn-sm btn-circle" [routerLink]="['../', 'post', post._id]" title="View Post Details">
+            <i class="fa fa-share"></i>
+          </a>
         </div>
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="mb-3">
-                <img src="https://i1.wp.com/metro.co.uk/wp-content/uploads/2018/04/599381442.jpg?quality=90&strip=all&zoom=1&resize=540%2C404&ssl=1" class="img-fluid" alt="{{post.title}}" width="180" />
+                <img src="https://i1.wp.com/metro.co.uk/wp-content/uploads/2018/04/599381442.jpg?quality=90&strip=all&zoom=1&resize=540%2C404&ssl=1" class="img-fluid" alt="{{post.title}}" width="180" title={{post.title}} />
               </div>
               <div class="mb-1">{{post.content}}</div>
               <hr>

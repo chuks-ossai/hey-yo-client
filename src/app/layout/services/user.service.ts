@@ -26,6 +26,10 @@ export class UserService {
     return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getMyDetails}`);
   }
 
+  public getUserByUsername(username: string): Observable<any> {
+    return this.http.get(`${BASE_URL}${USER_ENDPOINTS.getByUsername}/${username}`);
+  }
+
   public markAsRead(notificationId: string): Observable<any> {
     return this.http.put(`${BASE_URL}${USER_ENDPOINTS.markNotification}/${notificationId}`, null);
   }
