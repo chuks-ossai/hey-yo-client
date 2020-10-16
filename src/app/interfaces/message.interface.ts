@@ -4,5 +4,6 @@ export interface IMessage {
   receiver: string;
   sender: string;
   sentDate: Date;
+  senderName: string;
   _id: string;
 }

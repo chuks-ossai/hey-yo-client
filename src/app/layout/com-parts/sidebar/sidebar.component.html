@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['streams']">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="far fa-comments"></i>
     </div>
@@ -14,7 +14,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link"  [routerLink]="['streams']">
       <i class="fas fa-fw fa-user-circle"></i>
       <span>My Profile</span></a>
   </li>

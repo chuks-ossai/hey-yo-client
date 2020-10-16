@@ -8,6 +8,7 @@ export interface IUser {
   following: IUser[];
   followers: IUser[];
   notifications: INotification[];
+  chats: any;
   _id: string;
   createAt: Date;
   updatedAt: Date;

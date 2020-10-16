@@ -1,7 +1,7 @@
 <div id="wrapper">
 
   <!-- Sidebar -->
-  <heyyo-sidebar [user]="me" [data]="itemsCount" (logout)="onLogoutButtonClicked()"></heyyo-sidebar>
+  <heyyo-sidebar [user]="null" [data]="itemsCount" (logout)="onLogoutButtonClicked()"></heyyo-sidebar>
   <!-- End of Sidebar -->
 
   <!-- Content Wrapper -->
@@ -11,7 +11,7 @@
     <div id="content">
 
       <!-- Topbar -->
-      <heyyo-top-nav (logout)="onLogoutButtonClicked()" [user]="me"></heyyo-top-nav>
+      <heyyo-top-nav #topNav (logout)="onLogoutButtonClicked()" [user]="me"></heyyo-top-nav>
       <!-- End of Topbar -->
 
       <!-- Begin Page Content -->

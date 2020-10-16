@@ -46,7 +46,6 @@ export class ChatComponent implements OnInit {
   }
 
   joinChat(): void {
-    console.log('me has loaded');
     this.wsService.sendMessage('joinChat', {
       sender: this.me.username,
       receiver: this.receiverUsename
@@ -155,7 +154,6 @@ export class ChatComponent implements OnInit {
   onEnterKeyPressed(event): void {
     if (event.keyCode === 13) {
       this.onSendMessage();
-      this.typing = false;
     } else {
       this.wsService.sendMessage('typing', {
         sender: this.me.username,
@@ -171,7 +169,7 @@ export class ChatComponent implements OnInit {
           sender: this.me.username,
           receiver: this.receiverUsename
         });
-      }, 5000);
+      }, 4000);
     }
   }
 

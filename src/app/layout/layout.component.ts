@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStoreService } from '../core/services';
 import { IUser } from '../interfaces/user.interface';
 import { UserService } from './services/user.service';
+import { TopNavComponent } from './com-parts';
 
 @Component({
   selector: 'heyyo-layout',
@@ -28,6 +29,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   @ViewChild('messageArea') messageArea: ElementRef;
   @ViewChild('msgInput') msgInput: ElementRef;
   @ViewChild('list') listObj: any;
+  @ViewChild('topNav') topNav: TopNavComponent;
 
 
   constructor(
@@ -51,7 +53,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.userService.getMyDetails().subscribe(response => {
       if (response.Success) {
         this.me = response.Results[0];
-        console.log(this.me);
+        this.topNav.user = this.me;
+        this.topNav.checkIfRead(this.me.chats);
       } else {
         if (response.ErrorMessage) {
           console.log('response failure', response.ErrorMessage);
@@ -106,25 +109,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     // });
   }
 
-  sendMessage(): void {
-    this.wsService.sendMessage('newMessage', this.newMessage);
-    this.newMessage = '';
-    this.msgInput.nativeElement.focus();
-    const container = this.messageArea.nativeElement;
-    container.scrollTop = container.scrollHeight;
-  }
-
-  enterButtonPressed($event: any): any {
-    let pressed;
-    if (this.newMessage) {
-      pressed = $event.keyCode === 13 && this.sendMessage();
-      if (pressed) {
-        const container = this.messageArea.nativeElement;
-        container.scrollTop = container.scrollHeight;
-      }
-    }
-    return pressed;
-  }
 
   onLeaveChat(): void {
     this.wsService.sendMessage('disconnect');
