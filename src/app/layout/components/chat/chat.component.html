@@ -135,7 +135,9 @@
             </div>
             <textarea name="" class="form-control type_msg" placeholder="Type your message..." type="text" [(ngModel)]="newMessage" (keyup)="onEnterKeyPressed($event)"></textarea>
             <div class="input-group-append">
-              <span class="input-group-text emj_btn"><i class="fa fa-smile text-warning"></i></span>
+              <span class="input-group-text emj_btn">
+                <i  class="fa fa-smile text-warning" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+                  (emojiPickerSelect)="onEmojiSelected($event)"></i></span>
             </div>
             <div class="input-group-append">
               <span class="input-group-text send_btn" (click)="onSendMessage()"><i class="fas fa-paper-plane"></i></span>

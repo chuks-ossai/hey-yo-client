@@ -28,9 +28,11 @@
     "ngx-auto-scroll": "^1.1.0",
     "ngx-bootstrap": "^6.1.0",
     "ngx-cookie-service": "^10.0.1",
+    "ngx-emoji-picker": "^0.1.6",
     "rxjs": "~6.5.5",
     "socket.io-client": "^2.3.0",
     "tslib": "^2.0.0",
+    "twemoji": "^13.0.1",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit {
   userId = '';
   typing = false;
   typingMsg: any;
+  toggled = false;
 
   constructor(
     private wsService: WebSocketService,
@@ -95,7 +96,6 @@ export class ChatComponent implements OnInit {
       if (response.Success) {
         this.isProcessing = false;
         this.receiver = response.Results[0];
-        console.log(this.receiver);
         this.getMessages(this.receiver._id);
       } else {
         this.isProcessing = false;
@@ -121,6 +121,7 @@ export class ChatComponent implements OnInit {
         if (response.Success) {
           this.wsService.sendMessage('refreshData', {});
           this.newMessage = '';
+          this.toggled = false;
         } else {
           if (response.ErrorMessage) {
             console.log('response failure', response.ErrorMessage);
@@ -171,6 +172,11 @@ export class ChatComponent implements OnInit {
         });
       }, 4000);
     }
+  }
+
+  onEmojiSelected(event: any): void {
+    console.log(event.char);
+    this.newMessage = this.newMessage + event.char;
   }
 
   getFormatedDate(dateValue: Date): string {

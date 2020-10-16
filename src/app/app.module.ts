@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxAutoScrollModule } from 'ngx-auto-scroll';
+import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +56,7 @@ import { CommentEditorComponent } from './layout/components/posts/comment-editor
     AppRoutingModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),
+    NgxEmojiPickerModule.forRoot(),
     NgxAutoScrollModule
   ],
   providers: [
